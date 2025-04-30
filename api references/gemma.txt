@@ -1,0 +1,473 @@
+google / gemma-3-27b-it
+Gemma 3 model
+Description
+Gemma is a family of lightweight, state-of-the-art open models from Google,
+built from the same research and technology used to create the Gemini models.
+Gemma 3 models are multimodal, handling text and image input and generating text
+output, with open weights for both pre-trained variants and instruction-tuned
+variants. Gemma 3 has a large, 128K context window, multilingual support in over
+140 languages, and is available in more sizes than previous versions. Gemma 3
+models are well-suited for a variety of text generation and image understanding
+tasks, including question answering, summarization, and reasoning. Their
+relatively small size makes it possible to deploy them in environments with
+limited resources such as laptops, desktops or your own cloud infrastructure,
+democratizing access to state of the art AI models and helping foster innovation
+for everyone. This model is ready for commercial use.
+
+Third-Party Community Consideration
+This model is not owned or developed by NVIDIA. This model has been developed and built to a third-party’s requirements for this application and use case; see link to Non-NVIDIA Gemma 3 model card.
+
+License/Terms of Use
+GOVERNING TERMS: The trial service is governed by the NVIDIA API Trial Terms of Service; and the use of this model is governed by the NVIDIA Community Model License. ADDITIONAL INFORMATION: Gemma Terms of Use.
+
+Deployment Geography
+Global
+
+Use Case
+Models are well-suited for a variety of text generation and image understanding tasks, including question answering, summarization, and reasoning.
+
+Benefits
+At the time of release, this family of models provides high-performance open
+vision-language model implementations designed from the ground up for
+responsible AI development compared to similarly sized models.
+
+Using the benchmark evaluation metrics described in this document, these models
+have shown to provide superior performance to other, comparably-sized open model
+alternatives.
+
+Release Date
+Build.Nvidia.com - 3/11/2025 via https://build.nvidia.com/google/gemma-3-1b-it and https://build.nvidia.com/google/gemma-3-27b-it
+References
+Model Page: Gemma
+Authors: Google DeepMind
+
+Gemma 3 Technical Report
+Responsible Generative AI Toolkit
+Gemma on Kaggle
+Gemma on Vertex Model Garden
+Model Architecture
+Architecture Type: Dense decoder-only Transformer model
+
+Inputs and outputs
+Input
+Input Type(s): Text, Text+Image
+Input Format(s):
+
+String
+Image: jpg
+Input Parameters:
+
+Text: One-dimensional (1D)
+Image: Two-dimensional (2D)
+Other Properties Related to Input:
+
+Text string, such as a question, a prompt, or a document to be summarized
+Images, normalized to 896 x 896 resolution and encoded to 256 tokens
+each
+Total input context of 128K tokens for the 4B, 12B, and 27B sizes, and
+32K tokens for the 1B size
+Output
+Output Type(s): Text
+Output Format: String
+Output Parameters: (1D)
+Other Properties Related to Output:
+
+Generated text in response to the input, such as an answer to a
+question, analysis of image content, or a summary of a document
+Total output context of 8192 tokens
+Software Integration
+Runtime Engine(s): TRT-LLM
+Supported Hardware Microarchitecture Compatibility: NVIDIA Ampere, NVIDIA Blackwell, NVIDIA Jetson, NVIDIA Hopper, NVIDIA Lovelace, NVIDIA Pascal, NVIDIA Turing, and NVIDIA Volta architectures
+[Preferred/Supported] Operating System(s): Linux
+
+Model Version(s):
+Gemma 3 IT 1B: 1.0 (3/12/2025)
+Gemma 3 IT 4B: 1.0 (3/12/2025)
+Gemma 3 IT 12B: 1.0 (3/12/2025)
+Gemma 3 IT 27B: 1.0 (3/12/2025)
+Software
+Training was done using JAX and ML Pathways.
+
+JAX allows researchers to take advantage of the latest generation of hardware,
+including TPUs, for faster and more efficient training of large models. ML
+Pathways is Google's latest effort to build artificially intelligent systems
+capable of generalizing across multiple tasks. This is especially suitable for
+foundation models, including large language models like these ones.
+
+Together, JAX and ML Pathways are used as described in the
+paper about the Gemini family of models; "the 'single
+controller' programming model of Jax and Pathways allows a single Python
+process to orchestrate the entire training run, dramatically simplifying the
+development workflow."
+
+Training, Testing, and Evaluation Datasets
+Training Dataset
+Data Collection Method by dataset: Hybrid: Human, Automated
+Labeling Method by dataset: Hybrid: Human, Automated
+
+These models were trained on a dataset of text data that includes a wide variety
+of sources. The 27B model was trained with 14 trillion tokens, the 12B model was
+trained with 12 trillion tokens, 4B model was trained with 4 trillion tokens and
+1B with 2 trillion tokens. Here are the key components:
+
+Web Documents: A diverse collection of web text ensures the model is
+exposed to a broad range of linguistic styles, topics, and vocabulary. The
+training dataset includes content in over 140 languages.
+Code: Exposing the model to code helps it to learn the syntax and
+patterns of programming languages, which improves its ability to generate
+code and understand code-related questions.
+Mathematics: Training on mathematical text helps the model learn logical
+reasoning, symbolic representation, and address mathematical queries.
+Images: A wide range of images enables the model to perform image
+analysis and visual data extraction tasks.
+The combination of these diverse data sources is crucial for training a powerful
+multimodal model that can handle a wide variety of different tasks and data
+formats.
+
+Data Preprocessing
+Here are the key data cleaning and filtering methods applied to the training
+data:
+
+CSAM Filtering: Rigorous CSAM (Child Sexual Abuse Material) filtering
+was applied at multiple stages in the data preparation process to ensure
+the exclusion of harmful and illegal content.
+Sensitive Data Filtering: As part of making Gemma pre-trained models
+safe and reliable, automated techniques were used to filter out certain
+personal information and other sensitive data from training sets.
+Additional methods: Filtering based on content quality and safety in
+line with Google Responsible AI policies.
+Testing Dataset
+Data Collection Method by dataset: Hybrid: Human, Automated
+Labeling Method by dataset: Hybrid: Human, Automated
+
+Evaluation Dataset
+Data Collection Method by dataset: Hybrid: Human, Automated
+Labeling Method by dataset: Hybrid: Human, Automated
+
+Evaluation
+Model evaluation metrics and results are highlighted below.
+
+Benchmark Results
+These models were evaluated against a large collection of different datasets and
+metrics to cover different aspects of text generation:
+
+Reasoning and factuality
+Benchmark	Metric	Gemma 3 PT 1B	Gemma 3 PT 4B	Gemma 3 PT 12B	Gemma 3 PT 27B
+HellaSwag	10-shot	62.3	77.2	84.2	85.6
+BoolQ	0-shot	63.2	72.3	78.8	82.4
+PIQA	0-shot	73.8	79.6	81.8	83.3
+SocialIQA	0-shot	48.9	51.9	53.4	54.9
+TriviaQA	5-shot	39.8	65.8	78.2	85.5
+Natural Questions	5-shot	9.48	20.0	31.4	36.1
+ARC-c	25-shot	38.4	56.2	68.9	70.6
+ARC-e	0-shot	73.0	82.4	88.3	89.0
+WinoGrande	5-shot	58.2	64.7	74.3	78.8
+BIG-Bench Hard	few-shot	28.4	50.9	72.6	77.7
+DROP	1-shot	42.4	60.1	72.2	77.2
+STEM and code
+Benchmark	Metric	Gemma 3 PT 4B	Gemma 3 PT 12B	Gemma 3 PT 27B
+MMLU	5-shot	59.6	74.5	78.6
+MMLU (Pro COT)	5-shot	29.2	45.3	52.2
+AGIEval	3-5-shot	42.1	57.4	66.2
+MATH	4-shot	24.2	43.3	50.0
+GSM8K	8-shot	38.4	71.0	82.6
+GPQA	5-shot	15.0	25.4	24.3
+MBPP	3-shot	46.0	60.4	65.6
+HumanEval	0-shot	36.0	45.7	48.8
+Multilingual
+Benchmark	Gemma 3 PT 1B	Gemma 3 PT 4B	Gemma 3 PT 12B	Gemma 3 PT 27B
+MGSM	2.04	34.7	64.3	74.3
+Global-MMLU-Lite	24.9	57.0	69.4	75.7
+WMT24++ (ChrF)	36.7	48.4	53.9	55.7
+FloRes	29.5	39.2	46.0	48.8
+XQuAD (all)	43.9	68.0	74.5	76.8
+ECLeKTic	4.69	11.0	17.2	24.4
+IndicGenBench	41.4	57.2	61.7	63.4
+Multimodal
+Benchmark	Gemma 3 PT 4B	Gemma 3 PT 12B	Gemma 3 PT 27B
+COCOcap	102	111	116
+DocVQA (val)	72.8	82.3	85.6
+InfoVQA (val)	44.1	54.8	59.4
+MMMU (pt)	39.2	50.3	56.1
+TextVQA (val)	58.9	66.5	68.6
+RealWorldQA	45.5	52.2	53.9
+ReMI	27.3	38.5	44.8
+AI2D	63.2	75.2	79.0
+ChartQA	63.6	74.7	76.3
+VQAv2	63.9	71.2	72.9
+BLINK	38.0	35.9	39.6
+OKVQA	51.0	58.7	60.2
+TallyQA	42.5	51.8	54.3
+SpatialSense VQA	50.9	60.0	59.4
+CountBenchQA	26.1	17.8	68.0
+Inference
+Engine: Transformers
+Test Hardware: NVIDIA Hopper
+
+Ethics and Safety
+Ethics and safety evaluation approach and results are highlighted below.
+
+Evaluation Approach
+The evaluation method included structured evaluations and internal red-teaming
+testing of relevant content policies. Red-teaming was conducted by a number of
+different teams, each with different goals and human evaluation metrics. These
+models were evaluated against a number of different categories relevant to
+ethics and safety, including:
+
+Child Safety: Evaluation of text-to-text and image to text prompts
+covering child safety policies, including child sexual abuse and
+exploitation.
+Content Safety: Evaluation of text-to-text and image to text prompts
+covering safety policies including, harassment, violence and gore, and hate
+speech.
+Representational Harms: Evaluation of text-to-text and image to text
+prompts covering safety policies including bias, stereotyping, and harmful
+associations or inaccuracies.
+In addition to development level evaluations, assurance evaluations were conducted using the "arms-length" internal evaluations for responsibility
+governance decision making. They are conducted separately from the model
+development team, to inform decision making about release. High level findings
+are fed back to the model team, but prompt sets are held-out to prevent
+overfitting and preserve the results' ability to inform decision making.
+Assurance evaluation results are reported to the Responsibility & Safety Council
+as part of release review.
+
+Evaluation Results
+For all areas of safety testing, there were major improvements in the categories of
+child safety, content safety, and representational harms relative to previous
+Gemma models. All testing was conducted without safety filters to evaluate the
+model capabilities and behaviors. For both text-to-text and image-to-text, and
+across all model sizes, the model produced minimal policy violations, and showed
+significant improvements over previous Gemma models' performance with respect
+to ungrounded inferences. One limitation of the evaluation was that the models
+incorporated only English language prompts.
+
+Usage and Limitations
+The potential limitations for these models are outlined below.
+
+Intended Usage
+Open vision-language models (VLMs) models have a wide range of applications
+across various industries and domains. The following list of potential uses is
+not comprehensive. The purpose of this list is to provide contextual information
+about the possible use-cases that the model creators considered as part of model
+training and development.
+
+Content Creation and Communication
+Text Generation: These models can be used to generate creative text
+formats such as poems, scripts, code, marketing copy, and email drafts.
+Chatbots and Conversational AI: Power conversational interfaces
+for customer service, virtual assistants, or interactive applications.
+Text Summarization: Generate concise summaries of a text corpus,
+research papers, or reports.
+Image Data Extraction: These models can be used to extract,
+interpret, and summarize visual data for text communications.
+Research and Education
+Natural Language Processing (NLP) and VLM Research: These
+models can serve as a foundation for researchers to experiment with VLM
+and NLP techniques, develop algorithms, and contribute to the
+advancement of the field.
+Language Learning Tools: Support interactive language learning
+experiences, aiding in grammar correction or providing writing practice.
+Knowledge Exploration: Assist researchers in exploring large
+bodies of text by generating summaries or answering questions about
+specific topics.
+Model Limitations
+Training Data
+The quality and diversity of the training data significantly
+influence the model's capabilities. Biases or gaps in the training data
+can lead to limitations in the model's responses.
+The scope of the training dataset determines the subject areas
+the model can handle effectively.
+Context and Task Complexity
+Models are better at tasks that can be framed with clear
+prompts and instructions. Open-ended or highly complex tasks might be
+challenging.
+A model's performance can be influenced by the amount of context
+provided (longer context generally leads to better outputs, up to a
+certain point).
+Language Ambiguity and Nuance
+Natural language is inherently complex. Models might struggle
+to grasp subtle nuances, sarcasm, or figurative language.
+Factual Accuracy
+Models generate responses based on information they learned
+from their training datasets, but they are not knowledge bases. They
+may generate incorrect or outdated factual statements.
+Common Sense
+Models rely on statistical patterns in language. They might
+lack the ability to apply common sense reasoning in certain situations.
+Identified risks and mitigations
+Perpetuation of biases: It's encouraged to perform continuous
+monitoring (using evaluation metrics, human review) and the exploration of
+de-biasing techniques during model training, fine-tuning, and other use
+cases.
+Generation of harmful content: Mechanisms and guidelines for content
+safety are essential. Developers are encouraged to exercise caution and
+implement appropriate content safety safeguards based on their specific
+product policies and application use cases.
+Misuse for malicious purposes: Technical limitations and developer
+and end-user education can help mitigate against malicious applications of
+VLMs. Educational resources and reporting mechanisms for users to flag
+misuse are provided. Prohibited uses of Gemma models are outlined in the
+Gemma Prohibited Use Policy.
+Privacy violations: Models were trained on data filtered for removal
+of certain personal information and other sensitive data. Developers are
+encouraged to adhere to privacy regulations with privacy-preserving
+techniques.
+Ethical Considerations
+NVIDIA believes Trustworthy AI is a shared responsibility and we have established policies and practices to enable development for a wide array of AI applications. When downloaded or used in accordance with our terms of service, developers should work with their internal model team to ensure this model meets requirements for the relevant industry and use case and addresses unforeseen product misuse.
+
+Please report security vulnerabilities or NVIDIA AI Concerns here.
+
+-------------------------------
+
+Request response from the model
+post
+https://integrate.api.nvidia.com/v1/chat/completions
+Invokes inference using the model chat parameters. If uploading large images, this POST should be used in conjunction with the NVCF API which allows for the upload of large assets.
+You can find details on how to use NVCF Asset APIs here: https://docs.api.nvidia.com/cloud-functions/reference/createasset
+
+Log in to see full request history
+time	status	user agent	
+Make a request to see history.
+0 Requests This Month
+
+Body Params
+messages
+array of objects
+required
+length ≥ 1
+A list of messages comprising the conversation so far.
+
+
+object
+
+role
+string
+required
+The role of the message's author.
+
+
+assistant
+content
+required
+The contents of the message.
+
+To pass images (only with role=user):
+
+- When content is a string, image can be passed together with the text with img HTML tags that wraps
+an image URL (<img src="{url}" />),
+base64 encoded image data (<img src="data:image/{format};base64,{base64encodedimage}" />),
+or an NVCF asset ID (<img src="data:image/{format};asset_id,{asset_id}" />)
+when the container is hosted in NVCF and the payload exceeds 200KB.
+
+- When content is a list of objects, images can be passed as objects with type=image_url.
+
+- In both cases, images can be PNG, JPG or JPEG.
+
+For system and assistant roles, the object list format is not supported.
+
+
+string
+
+array
+
+ADD object
+model
+string
+required
+Defaults to google/gemma-3-27b-it
+The model to use.
+
+google/gemma-3-27b-it
+max_tokens
+Defaults to 512
+The maximum number of tokens that can be generated.
+
+
+integer
+
+null
+stream
+Defaults to false
+If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only server-sent events as they become available, with the stream terminated by a data: [DONE]
+
+
+boolean
+
+null
+temperature
+Defaults to 0.2
+What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.
+
+
+number
+
+null
+top_p
+Defaults to 0.7
+An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. We generally recommend altering this or temperature but not both.
+
+
+number
+
+null
+Headers
+NVCF-INPUT-ASSET-REFERENCES
+uuid
+length ≤ 370
+String of asset IDs separated by commas. Data is uploaded to AWS S3 using NVCF Asset APIs and associated with these asset IDs.If the size of an image is more than 180KB, it needs to be uploaded to a presigned S3 URL bucket. The presigned URL allows for secure and temporary access to the S3 bucket for uploading the image. Once the asset is requested, an asset ID is generated for it. Please include this asset ID in this header and to use the uploaded image in a prompt, you need to refer to it using the following format: <img src="data:image/png;asset_id,{asset_id}" />.
+
+Responses
+
+200
+Invocation is fulfilled
+
+
+202
+Result is pending. Client should poll using the requestId.
+
+
+422
+Validation failed, provided entity could not be processed.
+
+
+500
+The invocation ended with an error.
+
+---
+
+python -m pip install requests
+
+import requests
+
+url = "https://integrate.api.nvidia.com/v1/chat/completions"
+
+payload = {
+    "messages": [{ "role": "assistant" }],
+    "model": "google/gemma-3-27b-it",
+    "stream": True,
+    "temperature": 0,
+    "top_p": 0
+}
+headers = {
+    "accept": "application/json",
+    "content-type": "application/json"
+}
+
+response = requests.post(url, json=payload, headers=headers)
+
+print(response.text)
+
+RESPONSE
+Click Try It! to start a request and see the response here! Or choose an example:
+application/json
+
+200
+
+202
+
+422
+
+500
+text/event-stream
+
+200
