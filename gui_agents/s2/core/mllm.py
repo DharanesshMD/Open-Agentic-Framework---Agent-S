@@ -10,6 +10,8 @@ from gui_agents.s2.core.engine import (
     LMMEngineOpenRouter,
     LMMEnginevLLM,
     LMMEngineGemini,
+    LMMEngineNvidiaLlama,
+    LMMEngineNvidiaVila,
 )
 
 
@@ -32,8 +34,12 @@ class LMMAgent:
                     self.engine = LMMEngineGemini(**engine_params)
                 elif engine_type == "open_router":
                     self.engine = LMMEngineOpenRouter(**engine_params)
+                elif engine_type == "nvidia" and "llama" in engine_params.get("model", "").lower():
+                    self.engine = LMMEngineNvidiaLlama(**engine_params)
+                elif engine_type == "nvidia" and "vila" in engine_params.get("model", "").lower():
+                    self.engine = LMMEngineNvidiaVila(**engine_params)
                 else:
-                    raise ValueError("engine_type is not supported")
+                    raise ValueError("engine_type is not supported or model name is invalid for NVIDIA engine")
             else:
                 raise ValueError("engine_params must be provided")
         else:
@@ -116,7 +122,7 @@ class LMMAgent:
     ):
         """Add a new message to the list of messages"""
 
-        # API-style inference from OpenAI and AzureOpenAI
+        # API-style inference from OpenAI, AzureOpenAI, and NVIDIA
         if isinstance(
             self.engine,
             (
@@ -124,6 +130,8 @@ class LMMAgent:
                 LMMEngineAzureOpenAI,
                 LMMEngineHuggingFace,
                 LMMEngineGemini,
+                LMMEngineNvidiaLlama,
+                LMMEngineNvidiaVila,
             ),
         ):
             # infer role from previous message

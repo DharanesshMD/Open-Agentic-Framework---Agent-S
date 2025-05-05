@@ -144,28 +144,28 @@ def main():
     parser.add_argument(
         "--provider",
         type=str,
-        default="anthropic",
-        help="Specify the provider to use (e.g., openai, anthropic, etc.)",
+        default="nvidia",
+        help="Specify the provider to use (e.g., nvidia, openai, anthropic, etc.)",
     )
     parser.add_argument(
         "--model",
         type=str,
-        default="claude-3-7-sonnet-20250219",
-        help="Specify the model to use (e.g., gpt-4o)",
+        default="llama-3.3-nemotron-super-49b-v1",
+        help="Specify the model to use (e.g., llama-3.3-nemotron-super-49b-v1, gpt-4)",
     )
 
     # Grounding model config option 1: API based
     parser.add_argument(
         "--grounding_model_provider",
         type=str,
-        default="anthropic",
-        help="Specify the provider to use for the grounding model (e.g., openai, anthropic, etc.)",
+        default="nvidia",
+        help="Specify the provider to use for the grounding model (e.g., nvidia, openai, anthropic, etc.)",
     )
     parser.add_argument(
         "--grounding_model",
         type=str,
-        default="claude-3-7-sonnet-20250219",
-        help="Specify the grounding model to use (e.g., claude-3-5-sonnet-20241022)",
+        default="vila",
+        help="Specify the grounding model to use (e.g., vila, gpt-4-vision-preview)",
     )
     parser.add_argument(
         "--grounding_model_resize_width",
