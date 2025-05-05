@@ -1,4 +1,4 @@
-We support the following APIs for MLLM inference: OpenAI, Anthropic, Gemini, Azure OpenAI, vLLM for local models, Open Router, and DeepSeek. To use these APIs, you need to set the corresponding environment variables:
+We support the following APIs for MLLM inference: OpenAI, Anthropic, Gemini, Azure OpenAI, vLLM for local models, and Open Router. To use these APIs, you need to set the corresponding environment variables:
 
 1. OpenAI
 
@@ -39,12 +39,6 @@ Alternatively you can directly pass the API keys into the engine_params argument
 ```
 export OPENROUTER_API_KEY=<YOUR_API_KEY>
 export OPEN_ROUTER_ENDPOINT_URL="https://openrouter.ai/api/v1"
-```
-
-7. DeepSeek
-
-```
-export DEEPSEEK_API_KEY=<YOUR_API_KEY>
 ```
 
 ```python

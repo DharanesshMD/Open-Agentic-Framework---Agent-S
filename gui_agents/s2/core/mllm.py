@@ -11,7 +11,6 @@ from gui_agents.s2.core.engine import (
     LMMEnginevLLM,
     LMMEngineGemini,
 )
-from gui_agents.s2.core.engine_deepseek import LMMEngineDeepSeek
 
 
 class LMMAgent:
@@ -33,8 +32,6 @@ class LMMAgent:
                     self.engine = LMMEngineGemini(**engine_params)
                 elif engine_type == "open_router":
                     self.engine = LMMEngineOpenRouter(**engine_params)
-                elif engine_type == "deepseek":
-                    self.engine = LMMEngineDeepSeek(**engine_params)
                 else:
                     raise ValueError("engine_type is not supported")
             else:
